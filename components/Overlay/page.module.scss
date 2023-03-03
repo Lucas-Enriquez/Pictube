@@ -1,0 +1,14 @@
+.homeContainer {
+	display: flex;
+	background-color: #f9fafb;
+	transition-duration: 75ms;
+	transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	flex-direction: column;
+	height: 100%;
+}
+
+@media (min-width: 768px) {
+	.sidebarContainer {
+		display: flex;
+	}
+}

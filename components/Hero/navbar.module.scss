@@ -1,0 +1,86 @@
+.navbarContainer{
+  padding: 50px 20px;
+	display: flex;
+	background-color: #f6f6f6;
+	flex-direction: column;
+	align-items: center;
+  justify-content: space-between;
+	width: 100%;
+  height: 560px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 10px;
+  row-gap: 10px;
+  max-width: 1160px;
+}
+
+.category {
+  padding: 10px 15px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+
+.active {
+  padding: 10px 15px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.905);
+  color: #000000;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.category:hover {
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.915);
+}
+
+.heroContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.heroImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.backgroundOverlay {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-size: 3rem;
+  color: #ffff;
+  text-align: center;
+  font-weight: 900;
+}

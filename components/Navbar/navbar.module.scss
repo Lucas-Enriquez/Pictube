@@ -1,0 +1,43 @@
+.sidebarLogo {
+	gap: 0.5rem;
+}
+
+.sidebarContainer {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  background-color: #ffffff; 
+  height: 80px;
+  padding: 10px 20px;
+}
+
+.profilePicture {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+}
+.createPin {
+  background-color: #f990a6;
+  padding: 10px 16px;
+  border-radius: 10%;
+  &:hover {
+    background: #f990a7d7;
+  }
+  p {
+    color: #ffff;
+  }
+}
+
+.logout {
+  color: #27292a;
+  cursor: pointer;
+  &:hover {
+    color: #27292a6e;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebarContainer {
+    display: none;
+  }
+}
