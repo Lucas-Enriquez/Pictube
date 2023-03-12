@@ -3,10 +3,12 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-import { AiOutlineCloudUpload, MdDelete } from '../../utils'
+import { MdDelete, BsPlusCircleFill } from '../../utils'
 import Spinner from '../../components/Spinner/Spinner'
 import { categories } from '../../utils/data'
 import { client } from '../client'
+
+import createPinStyles from './create-pin.module.scss'
 
 interface User {
   name?: string,
@@ -29,7 +31,6 @@ function page() {
   const {data} = useSession()
   const user: User = data?.user
 
-  console.log(user)
 
   const uploadImage = (e) => {
     const {type, name} = e.target.files[0]
@@ -92,20 +93,22 @@ function page() {
           Please fill in all the fields.
         </p>
       )}
-      <div className='flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5 w-full'>
-        <div className='bg-gray-100 p-3 flex flex-1 w-full h-96'>
-          <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-full'>
+      <div className='flex lg:flex-row flex-col justify-center items-center cursor-pointer bg-white lg:p-5 p-3 lg:w-4/5 w-full'>
+        <div className={createPinStyles.uploadContainer}>
+          <div className='flex justify-center items-center flex-col border-2 border-dotted rounded-lg border-gray-300 p-3 w-full h-full'>
             {loading && <Spinner message="Please wait"/>}
             {wrongImageType && <p>Wrong image type</p>}
             {!imageAsset ? (
               <label>
-                <div className='flex flex-col items-center justify-center h-full'>
+                <div className='flex flex-col items-center justify-center h-44'>
                   <div className='flex flex-col justify-center items-center'>
                     <p className='font-bold text-2xl'>
-                      <AiOutlineCloudUpload color={"#2b2c2f"} size={"38px"}/>
+                      <div className={createPinStyles.uploadIcon}>
+                        <p>+</p>
+                      </div>
                     </p>
                     <p className='text-lg'>Click to upload</p>
-                    <p className='mt-32 text-gray-400'>
+                    <p className='text-gray-400'>
                       Use high-quality JPG, SVG, PNG, GIF less than 20 MB
                     </p>
                   </div>

@@ -63,8 +63,8 @@ function Pin({ pin: { postedBy, image, _id, destination, save } }) {
       >
         {image && (
           <Image
-            width={100}
-            height={100}
+            width={1000}
+            height={1000}
             className="rounded-lg w-full "
             src={urlFor(image).width(250).url()}
             alt="user-post"

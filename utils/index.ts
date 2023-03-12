@@ -11,4 +11,4 @@ export { HiMenu } from 'react-icons/hi'
 export { AiOutlineLoading3Quarters } from 'react-icons/ai';
 export {GoSignOut} from 'react-icons/go'
 export { AiTwotoneDelete } from 'react-icons/ai'
-export {BsFillArrowUpRightCircleFill} from 'react-icons/bs'
+export {BsFillArrowUpRightCircleFill, BsPlusCircleFill} from 'react-icons/bs'
