@@ -27,6 +27,9 @@ function search({params, searchParams}) {
     fetchResults()
   }, [searchTerm])
 
+  console.log(searchParams.q)
+  console.log(searchTerm)
+
   if(!searchParams.q || !searchTerm) return <Search404/>
   if(results === null) return <Spinner message={`We are loading your results for: ${capitalizedTerm}`}/>
   if(results.length === 0) return (<div className='text-center mt-10 text-2xl'>No pins found!</div>)
