@@ -108,7 +108,7 @@ const page = () => {
             }
             <img
               className={profileStyles.banner}
-              src={userData?.banner.asset ? urlFor(userData?.banner.asset).url(): "https://assets.tumblr.com/images/default_header/optica_pattern_05.png"}
+              src={userData?.banner?.asset ? urlFor(userData?.banner?.asset).url(): "https://assets.tumblr.com/images/default_header/optica_pattern_05.png"}
               // src="https://assets.tumblr.com/images/default_header/optica_pattern_05.png"
               alt="user-pic"
             />
