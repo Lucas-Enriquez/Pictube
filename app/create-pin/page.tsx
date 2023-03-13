@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-import { MdDelete, BsPlusCircleFill } from '../../utils'
+import { MdDelete } from '../../utils'
 import Spinner from '../../components/Spinner/Spinner'
 import { categories } from '../../utils/data'
 import { client } from '../client'

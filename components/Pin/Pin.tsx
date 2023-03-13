@@ -21,9 +21,7 @@ function Pin({ pin: { postedBy, image, _id, destination, save } }) {
 
   const user:User = data?.user
 
-  const alreadySaved = !!save?.filter(
-    () => (item) => item.postedBy._id === user.id
-  )?.length;
+  const alreadySaved = !!save?.filter(() => (item) => item.postedBy._id === user.id)?.length;
 
   const savePin = (id) => {
     if (!alreadySaved) {
@@ -66,7 +64,7 @@ function Pin({ pin: { postedBy, image, _id, destination, save } }) {
             width={1000}
             height={1000}
             className="rounded-lg w-full "
-            src={urlFor(image).width(250).url()}
+            src={urlFor(image).width(720).url()}
             alt="user-post"
           />
         )}

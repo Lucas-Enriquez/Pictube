@@ -1,10 +1,17 @@
+.bodyStyles {
+	background-color: #f9fafb;
+}
+
+.bodyStyles::-webkit-scrollbar{
+	display: none;
+}
+
 .homeContainer {
 	display: flex;
 	flex-direction: column;
-	background-color: #f9fafb;
 	transition-duration: 75ms;
 	transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-	height: 100%;
+	height: fit-content;
 }
 
 .sidebarContainer {

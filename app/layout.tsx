@@ -18,7 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html>
       <head />
-      <body className="hide-scrollbar">
+      <body className={homePageStyles.bodyStyles}>
           <SessionProvider>
             {
               pathName === '/login' ? (

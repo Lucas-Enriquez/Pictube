@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import navBarStyles from "./navbar.module.scss";
@@ -11,6 +10,9 @@ import { User } from "../../app/types";
 
 function Navbar({ closeToggle }) {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const paramsOne = useSearchParams();
+  const search = paramsOne.get('q')
 
   const { data } = useSession();
   const router = useRouter();
@@ -27,6 +29,7 @@ function Navbar({ closeToggle }) {
       router.push(`./search?q=${searchTerm}`);
     }
   };
+
 
   return (
     <div className={navBarStyles.sidebarContainer}>
@@ -55,7 +58,7 @@ function Navbar({ closeToggle }) {
             <input
               type="text"
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search"
+              placeholder={!search ? "Search": searchTerm}
               value={searchTerm}
               onKeyDown={handleKeyDown}
               className="p-2 w-full bg-white outline-none rounded-full"

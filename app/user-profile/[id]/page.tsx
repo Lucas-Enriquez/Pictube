@@ -2,11 +2,11 @@
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
+import profileStyles from './profile.module.scss'
 import { MasonryLayout } from '../../../components'
 import Spinner from '../../../components/Spinner/Spinner'
 import { userPinsQuery, userQuery, userSavedPinsQuery } from '../../../utils/data'
-import { client } from '../../client'
+import { client, urlFor } from '../../client'
 import { MdLogout } from "../../../utils";
 
 interface User {
@@ -21,6 +21,8 @@ const page = () => {
   const [userCreated, setUserCreated] = useState(null)
   const [text, setText] = useState('created')
   const [activeBtn, setActiveBtn] = useState('created')
+
+  const [loadingBanner, setLoadingBanner] = useState(false)
 
   const params = usePathname()
   const userId = params.slice(14)
@@ -46,9 +48,8 @@ const page = () => {
   useEffect(() => {
     if(params !== undefined) {
       fetchUserData()
-
     }
-  }, [userId])
+  }, [userId, loadingBanner])
 
   useEffect(() => {
     if(text === 'saved') {
@@ -57,6 +58,35 @@ const page = () => {
       fetchUserCreatedPins()
     }
   }, [text, userId])
+
+  const uploadBanner = (e) => {
+    const {name} = e.target.files[0]
+    setLoadingBanner(true)
+
+    client.assets
+    .upload('image', e.target.files[0], {
+      filename: name
+    })
+    .then((imageAsset) => {
+      return client
+      .patch(userData._id)
+      .set({
+        banner: {
+          _type: "image",
+          asset: imageAsset._id
+        }
+      })
+      .commit()
+    })
+    .then(() => {
+      setLoadingBanner(false)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }
+
 
   const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
   const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
@@ -70,13 +100,24 @@ const page = () => {
       <div className="flex flex-col pb-5">
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
+            {
+              loadingBanner &&
+              <div className={profileStyles.bannerSpinner}>
+                <Spinner message="Please wait"/>
+              </div>
+            }
             <img
-              className=" w-full h-[270px] 2xl:h-[510px] shadow-lg object-cover"
-              src="https://source.unsplash.com/1600x900/?nature,photography,technology"
+              className={profileStyles.banner}
+              src={userData?.banner.asset ? urlFor(userData?.banner.asset).url(): "https://assets.tumblr.com/images/default_header/optica_pattern_05.png"}
+              // src="https://assets.tumblr.com/images/default_header/optica_pattern_05.png"
               alt="user-pic"
             />
+            <div className={profileStyles.bannerOverlay}>
+              <input type='file' name="upload-banner" id="uploadBanner" hidden onChange={uploadBanner}/>
+              <label className={profileStyles.changeBanner} htmlFor="uploadBanner">Change banner</label>
+            </div>
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
+              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover z-10"
               src={userData.image}
               alt="user-pic"
             />

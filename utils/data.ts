@@ -4,7 +4,7 @@ export const categories = [
     image: "https://i.pinimg.com/564x/73/94/eb/7394ebcbd70c48b3e0ff930ce3683da4.jpg"
   },
   {
-    name: "movies / tv shows",
+    name: "movies or tv shows",
     image: "https://i.pinimg.com/564x/a8/30/d5/a830d5ce33d163055920bd028e2f1fa3.jpg"
   },
   {
