@@ -9,7 +9,7 @@ import { pinDetailMorePinQuery, pinDetailQuery } from '../../../utils/data';
 import { client } from '../../client';
 import { MasonryLayout } from '../../../components';
 
-import {FiArrowUpRight, MdDownloadForOffline} from '../../../utils'
+import {FiArrowUpRight, IoMdSend, MdDownloadForOffline, VscLoading} from '../../../utils'
 
 interface User {
   name?: string,
@@ -81,13 +81,13 @@ function PinDetail() {
 
   return (
     <>
-    <div className='flex flex-col mt-12 mx-auto bg-white xl:flex-row max-w-[550px] xl:max-w-[1015px]' style={{borderRadius: "32px"}}>
-      <div className='flex justify-center items-center md:items-start flex-initial shadow-lg'>
+    <div className='flex flex-col mt-12 mx-auto bg-white xl:flex-row max-w-[550px] xl:w-full xl:max-w-[1015px]' style={{borderRadius: "32px"}}>
+      <div className='flex justify-center items-center md:items-start flex-initial shadow-lg max-w-[510px]'>
         <img src={pinDetails?.image.asset.url}
-        className="rounded-t-3xl rounded-b-lg w-full h-full"
+        className="rounded-t-3xl rounded-b-lg w-[510px] h-full object-cover"
         alt="user-post"/>
       </div>
-          <div className='w-full p-5 flex-1 xl:min-w-[620px]'>
+          <div className='w-full p-5 flex-1 xl:min-w-[480px]'>
             <div className='flex items-center justify-between'>
               <div className='flex gap-2 items-center'>
                   <a href={`${pinDetails?.image.asset.url}?dl=`} download
@@ -99,7 +99,7 @@ function PinDetail() {
               <a href={`${pinDetails?.destination}`} target="_blank" rel="noreferrer">
                 <div className='px-4 py-2 text-white bg-zinc-900 hover:opacity-60 rounded-full flex justify-center items-center gap-x-3'>
                   <FiArrowUpRight color='white'/>
-                  <p>Watch source</p>
+                  <p className='font-bold'>Watch source</p>
                 </div>
               </a>
           </div>
@@ -129,18 +129,18 @@ function PinDetail() {
                 </div>
               ))}
             </div>
-            <div className='flex flex-wrap mt-6 gap-3'>
+            <div className='flex flex-wrap mt-6 gap-3 relative'>
               <Link href={`/user-profile/${pinDetails?.postedBy?._id}`} className="">
                 <img
                   className="w-10 h-10 rounded-full cursor-pointer"
-                  src={pinDetails?.postedBy?.image}
+                  src={user?.image}
                   alt="user-profile"
                 />
               </Link>
-              <input type="text" className='flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300' placeholder='Add a comment' value={comment} onChange={(e) => setComment(e.target.value)}/>
-              <button type='button' className='bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none'
+              <input type="text" className=' flex-1 border-gray-100 outline-none border-2 py-3 p-2 rounded-full focus:border-gray-300' placeholder='Add a comment' value={comment} onChange={(e) => setComment(e.target.value)}/>
+              <button type='button' className='absolute  right-[5px] top-[6px] w-10 h-10 flex justify-center items-center bg-red-600 hover:bg-red-700 text-white rounded-full font-semibold text-center outline-none'
                 onClick={addComment}>
-                {addingComment ? 'Posting comment' : 'Post'}
+                {addingComment ? <VscLoading size={"20px"} className="spinnerAnimation"/> : <IoMdSend size={20}/>}
               </button>
             </div>
           </div>

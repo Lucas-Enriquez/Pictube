@@ -1,4 +1,4 @@
-export { IoMdSearch } from 'react-icons/io';
+export { IoMdSearch, IoMdSend } from 'react-icons/io';
 export { FiArrowUpRight } from 'react-icons/fi'
 export { MdDownloadForOffline } from 'react-icons/md';
 export { AiOutlineCloudUpload } from 'react-icons/ai'
