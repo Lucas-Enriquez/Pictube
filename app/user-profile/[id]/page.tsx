@@ -84,7 +84,6 @@ const page = () => {
     .catch((error) => {
       console.log(error)
     })
-
   }
 
 
@@ -111,10 +110,14 @@ const page = () => {
               src={userData?.banner?.asset ? urlFor(userData?.banner?.asset).url(): "https://assets.tumblr.com/images/default_header/optica_pattern_05.png"}
               alt="user-pic"
             />
-            <div className={profileStyles.bannerOverlay}>
+            {userId === user.id &&
+            (
+              <div className={profileStyles.bannerOverlay}>
               <input type='file' name="upload-banner" id="uploadBanner" hidden onChange={uploadBanner}/>
               <label className={profileStyles.changeBanner} htmlFor="uploadBanner">Change banner</label>
             </div>
+            )
+            }
             <img
               className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover z-10"
               src={userData.image}
